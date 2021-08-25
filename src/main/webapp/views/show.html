@@ -1,0 +1,48 @@
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/layout :: head">
+</head>
+<body>
+<div th:replace="/layout :: header"></div>
+<div class="container">
+
+
+  <h2 style="text-align: center">Show Student</h2>
+
+  <br>
+  <br>
+  <table class="table">
+    <thead>
+    <tr>
+      <th>#</th>
+      <th>Name</th>
+      <th>Date of Birth</th>
+      <th>Email</th>
+      <th>Classroom</th>
+      <th colspan="2">Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="st, loop : ${list}">
+      <td th:text="${loop.index+1}"></td>
+      <td  th:text="${st.name}"></td>
+      <td th:text="${st.DoB}"></td>
+      <td th:text="${st.phone}"></td>
+      <td th:text="${st.classRoom.name}"></td>
+
+      <td><a th:href="@{/edit/{id}(id=${st.id})}" class="btn btn-warning">Edit</a></td>
+      <td><a th:href="@{/delete/{id}(id=${st.id})}" class="btn btn-danger">Delete</a></td>
+    </tr>
+    </tbody>
+  </table>
+  <div>
+    <a href="/show?pageNumber=0" class="btn btn-warning">1</a>
+    <a href="/show?pageNumber=1" class="btn btn-warning">2</a>
+    <a href="/show?pageNumber=2" class="btn btn-warning">Next</a>
+  </div>
+</div>
+
+<div th:replace="/layout :: footer"></div>
+</body>
+</html>
